@@ -16,11 +16,14 @@ char* func1(char *c1, char *c2)
 		return p; 
 }
 
+
+
 int main(int argc, char **argv)
 {
 	char c1[20] = "Hello";
 	char c2[30] = "world";
 	for(int i = 0; i < strlen(func1(c1, c2)); ++i)
 		cout << func1(c1, c2)[i] << endl;
+	delete [] func1(c1, c2);
 	return 0;
 } 
