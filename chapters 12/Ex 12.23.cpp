@@ -17,13 +17,21 @@ char* func1(char *c1, char *c2)
 }
 
 
-
 int main(int argc, char **argv)
 {
+	//char
 	char c1[20] = "Hello";
 	char c2[30] = "world";
 	for(int i = 0; i < strlen(func1(c1, c2)); ++i)
 		cout << func1(c1, c2)[i] << endl;
-	delete [] func1(c1, c2);
+	char *p = func1(c1, c2);
+	//string
+	string s1 = "bilibili";
+	string s2 = "ganbei";
+	string s3 = s1 + s2; 
+	strcpy(p, s3.c_str());
+	cout << p << endl;
+	
+	delete [] p;
 	return 0;
 } 
