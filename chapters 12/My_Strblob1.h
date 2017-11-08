@@ -24,14 +24,14 @@ class StrBlob{
 		typedef vector<string>::size_type size_type;
 		StrBlob(): data(make_shared<vector<string>> ()) {	}
 		StrBlob(initializer_list<string> il): data(make_shared<vector<string>> (il)) {	}
-
+		//首尾元素的访问 
 		StrBlobPtr begin();
 		StrBlobPtr end();
 		bool empty() const { return data->empty();}
 		//添加和删除操作
 		void push_back(const string &t);
 		void pop_back();
-		//元素访问
+		//元素访问，const重载 
 		string& front();
 		const string& front() const;
 		string& back();
@@ -39,7 +39,8 @@ class StrBlob{
 				
 	private:
 		shared_ptr<std::vector<std::string>> data;
-		void check(size_type i, const std::string& msg) const;
+		//check检查是否越界 
+		void check(size_type i, const std::string& msg) const; 
 }; 
 
 inline void StrBlob::check(size_type i, const string &msg) const
@@ -84,7 +85,7 @@ inline const string& StrBlob::back() const
 }
 //size_t curr; sp_vec_str check() ; wptr
 class StrBlobPtr{
-	friend bool eq(const StrBlobPtr&, const StrBlobPtr& );
+	friend bool eq(const StrBlobPtr&, const StrBlobPtr&);//判等器 
 	public:
 		StrBlobPtr(): curr(0) {		}
 		StrBlobPtr(StrBlob &sb, size_t t = 0):
@@ -109,9 +110,9 @@ inline shared_ptr<vector<string>>
 StrBlobPtr::check(size_t i, const string &msg) const
 {
 	auto ret = wptr.lock();//检查vector是否存在 
-	if(!ret)
+	if(!ret)//检查存在 
 		throw runtime_error("unbound StrBlobPtr");
-	if(i >= ret->size())
+	if(i >= ret->size())//检查越界 
 		throw out_of_range(msg);
 	return ret;//存在返回指向vector的shared_ptr 
 } 
