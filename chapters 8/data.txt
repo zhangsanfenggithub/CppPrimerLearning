@@ -1,0 +1,4 @@
+这是个测试文件 stream
+测试vector<string> bilibili
+what the hell
+quit
