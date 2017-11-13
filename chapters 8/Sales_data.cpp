@@ -1,9 +1,9 @@
 #include <iostream>
-#include <fstream>
 #include "Sales_data.h"
 
 using namespace std;
 
+//流初始化Sales_data 
 Sales_data::Sales_data(istream &is)
 {
 	double price = 0.0;
@@ -31,37 +31,3 @@ std::ostream &print(std::ostream &os, const Sales_data &item)
 	os << item.isbn() << " " << item.revenue << " "   << item.units_sold;
 	return os;
 }
-
-int main(int argc, char *argv[])
-{
-	
-	
-	ifstream in("text.txt");
-	if(!in){
-		cerr << "无法打开输入文件" << endl;
-		return -1; 
-	}
-	
-	ofstream out("out.txt");
-	if(!out){
-		cerr << "无法打开输出文件" << endl;
-		return -1;
-	} 
-	
-	
-	Sales_data total;
-	if(read(in, total)){
-		Sales_data trans;
-		while(read(in, trans)){
-			if(total.isbn() == trans.isbn())
-				total.combine(trans);
-			else{
-				print(out, total);
-				total = trans;
-			}
-		}
-		print(out, total);
-	}else
-		cerr << "No data?" << endl;
-		
-} 
