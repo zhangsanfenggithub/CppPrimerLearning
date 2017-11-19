@@ -25,30 +25,33 @@ int main()
 {
 	X x;
 	
-	cout << "非引用参数传递" << endl;
+	cout << "非引用参数传递f1:" << endl;
 	f1(x);
 	cout << "-------------------------" << endl;
 	
-	cout << "引用参数传递" << endl;
+	cout << "引用参数传递f2:" << endl;
 	f2(x);
 	cout << "-------------------------" << endl;
 	
-	cout << "动态分配" << endl;
+	cout << "动态分配new:" << endl;
 	X *p = new X;
 	cout << "-------------------------" << endl;
 	
-	cout << "存放在容器中" << endl;
+	cout << "存放在容器中:" << endl;
 	vector<X> vx;
 	vx.push_back(x);
 	cout << "-------------------------" << endl;
 	
-	cout << "释放动态对象" << endl;
+	cout << "释放动态对象:" << endl;
 	delete p;
 	cout << "-------------------------" << endl;
 	
-	cout << "各种初始化和赋值" << endl;
+	cout << "各种初始化和赋值:" << endl;
+	cout << "间接初始化：   " << endl;
 	X x1 = x;
-	X x2(x);
+	cout << "直接初始化：   " << endl;
+	X x2();//用了x这个对象，那么也是拷贝 
+	cout << "赋值：         " << endl;
 	x1 = x;
 	cout << "-------------------------" << endl;
 	
