@@ -10,9 +10,8 @@ private:
 public:
     Employee () { mysn = sn++; }
     Employee (const string &s) { name = s; mysn = sn++; }
-    // 为13.19题定义的拷贝构造函数和拷贝赋值运算符
-    //  Employee (Employee &e) { name = e.name; mysn = sn++; }
-    //  Employee& operator=(Employee &rhs) { name = rhs.name; return *this; }
+	Employee (Employee &e) { name = e.name; mysn = sn++; }
+    Employee& operator=(Employee &rhs) { name = rhs.name; return *this; }
     const string &get_name() { return name; }
     int get_mysn() { return mysn; }
 
@@ -20,7 +19,8 @@ private:
     string name;
     int mysn;
 };
-
+//没有拷贝构造函数的时候 f函数的参数 无论是不是引用对结果没有影响 
+//存在拷贝构造的时候 参数是引用 结果为:0，1，2； 参数不是引用结果为3，4，5 
 int Employee::sn = 0;
 
 void f(Employee &s)
